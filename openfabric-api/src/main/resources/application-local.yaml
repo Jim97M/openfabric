@@ -1,0 +1,69 @@
+# ===============================
+# = Spring configurations
+# ===============================
+spring:
+  name: local
+
+  # = HTTP requests configurations ##############################
+  servlet:
+    multipart:
+      location: /tmp
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+  # = JPA configurations #########################################
+  jpa:
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: public
+        current_session_context_class: org.springframework.orm.hibernate5.SpringSessionContext
+    show-sql: false
+  # = SQL configurations #########################################
+  sql:
+    init:
+      platform: postgresql
+  # = DATASOURCE configurations ###################################
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/openfabric
+    username: postgres
+    password: postgres123
+  # = LIQUIBASE configurations #########################################
+  liquibase:
+    change-log: classpath:db/liquibase-changelog.xml
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/openfabric
+    user: postgres
+    password: postgres123
+
+## ===============================
+## = ELIDE configurations
+## ===============================
+elide:
+  json-api:
+    path: /api/v1
+    enabled: true
+  graphql:
+    enabled: false
+  swagger:
+    enabled: false
+
+# ===============================
+# = LOG LEVEL
+# ===============================
+logging:
+  level.org.hibernate.SQL: debug
+
+# ===============================
+# = Configuration
+# ===============================
+node:
+  api:
+    path: /api/v1
+
+debug: true
+server:
+  port: 8081
