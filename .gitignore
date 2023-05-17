@@ -6,3 +6,4 @@ openfabric-api/build/
 openfabric-api/bin/
 readme.md
 ExternalLibraries/
+.env

@@ -11,14 +11,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("${node.api.path}/worker")
+@RequestMapping("api/v1/")
 public class WorkerController<WorkerStats> {
-
 
     @Autowired
     private WorkerService workerService;
 
-    @GetMapping
+    @GetMapping("worker")
     public ResponseEntity<Page<Worker>> listWorkers(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
@@ -37,7 +36,7 @@ public class WorkerController<WorkerStats> {
         return ResponseEntity.ok(worker);
     }
 
-    @PostMapping
+    @PostMapping("createworker")
     public ResponseEntity<Worker> createWorker(@RequestBody Worker worker) {
         worker = workerService.createWorker(worker);
         return ResponseEntity.status(HttpStatus.CREATED).body(worker);
